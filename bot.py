@@ -1,4 +1,6 @@
 import discord
+from gen_password import gen_psw
+
 
 # la variabile intents contiene i permessi al bot
 intents = discord.Intents.default()
@@ -21,6 +23,9 @@ async def on_message(message):
         await message.channel.send("\U0001f642")
     elif message.content.startswith("sono triste"):
         await message.channel.send("\U0001F622")
+    elif message.content.startswith("genera password"):
+        password = gen_psw()
+        await message.channel.send(password)
     else:
         await message.channel.send(message.content)
 
