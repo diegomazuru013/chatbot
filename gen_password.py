@@ -9,3 +9,13 @@ def gen_psw():
         password += random.choice(caratteri)
 
     return password
+
+def gen_email():
+    caratteri = "abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+
+    lun = 10
+    email = ""
+    for i in range(lun):
+        email += random.choice(caratteri)
+
+    return email
