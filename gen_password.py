@@ -19,3 +19,10 @@ def gen_email():
         email += random.choice(caratteri)
 
     return email
+
+
+
+def doppia_lettera(s):
+    risultato = ''.join(lettera * 2 for lettera in s)
+    return risultato
+
