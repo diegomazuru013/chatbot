@@ -1,7 +1,8 @@
 import discord
 from discord.ext import commands
-from gen_password import gen_psw, gen_email, doppia_lettera, funzione_segreta
-
+from gen_password import gen_psw, gen_email, doppia_lettera
+import random
+import os
 
 # la variabile intents contiene i permessi al bot
 intents = discord.Intents.default()
@@ -36,6 +37,31 @@ async def doppia(ctx, s):
     lettera = doppia_lettera(s)
     await ctx.send(doppia_lettera(s))
 
+@bot.command()
+async def meme01(ctx):
+    immagini = ['dev1.jpg', 'dev2.jpg', 'dev3.jpg']
+    random_meme = random.choice(immagini)
+    with open(f'meme/dev/{random_meme}', 'rb') as f:
+        img_discord = discord.File(f)
+        await ctx.send(file=img_discord)
+    
+
+@bot.command()
+async def meme(ctx, tipo):
+    if tipo == "scritti":
+        cartella = "meme/meme scritti"
+    elif tipo == "immagini":
+        cartella = "meme/meme immagini"
+    else:
+        await ctx.send("Scrivi `meme scritti` oppure `meme immagini`")
+        return
+
+    immagini = os.listdir(cartella)
+    random_meme = random.choice(immagini)
+
+    with open(f"{cartella}/{random_meme}", "rb") as f:
+        img_discord = discord.File(f)
+        await ctx.send(file=img_discord)
 
 
 bot.run("token")  # inserisci il token del tuo bot
